@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  connection: local
+  vars:
+    nios_provider:
+      host: 192.168.150.46
+      username: admin
+      password: infoblox
+
+  tasks:
+    - name: configure a network ipv4
+      nios_network:
+        network: 192.168.30.0/24
+        comment: ansible created test network
+        state: present
+        provider: "{{ nios_provider}}"
+          
+      
