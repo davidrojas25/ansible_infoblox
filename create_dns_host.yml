@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    nios_provider:
+      host: 192.168.150.46
+      username: admin
+      password: infoblox
+
+  tasks:
+    - name: configure an ipv4 host record
+      nios_host_record:
+        name: host1.rojaslab.me
+        ipv4:
+          - address: 192.168.30.11
+        aliases:
+          - cname1.rojaslab.me
+        state: present
+        provider: "{{ nios_provider}}"
+      connection: local
