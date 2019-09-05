@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   vars:
+    option_use: 
     nios_provider:
       host: 192.168.150.46
       username: admin
@@ -18,7 +19,7 @@
             value: rojaslab.me
           - name: router
             value: 192.168.30.1
-            use_option: no
+            use_option: "{{ option_use | default(omit, true) }}"
         provider: "{{ nios_provider}}"
           
       
