@@ -10,14 +10,6 @@
 
   tasks:
 
-    - name: configure a zone on the system using grid primary and secondaries
-      nios_zone:
-        name: rojaslab.me
-        restart_if_needed: true
-        state: present
-        provider: "{{ nios_provider}}"
-      connection: local
-
     - name: configure a network ipv4
       nios_network:
         network: 192.168.30.0/24

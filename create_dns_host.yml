@@ -8,13 +8,21 @@
       password: infoblox
 
   tasks:
-    - name: configure an ipv4 host record
-      nios_host_record:
-        name: host1.rojaslab.me
-        ipv4:
-          - address: 192.168.30.11
-        aliases:
-          - cname1.rojaslab.me
-        state: present
-        provider: "{{ nios_provider}}"
-      connection: local
+
+      - name: configure a zone on the system using grid primary and secondaries
+        nios_zone:
+          name: rojaslab.me
+          restart_if_needed: true
+          state: present
+          provider: "{{ nios_provider}}"
+        connection: local
+      - name: configure an ipv4 host record
+        nios_host_record:
+          name: host1.rojaslab.me
+          ipv4:
+            - address: 192.168.30.11
+          aliases:
+            - cname1.rojaslab.me
+          state: present
+          provider: "{{ nios_provider}}"
+        connection: local
